@@ -21,7 +21,7 @@ spec:
 #      dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: docker-systools
-        image: ponte124/docker-systools:latest
+        image: ponte124/docker-systools:stable-aarch64
         imagePullPolicy: Always
         command:
           - sh

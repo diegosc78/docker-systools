@@ -64,6 +64,14 @@ NOT YET DOCUMENTED (please, contribute with your own examples)
 
     `# docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock ponte124/docker-systools ctop
 
+- **Test JDBC connection** with sqlline
+
+    `CONTAINER# sqlline`
+    `sqlline> !connect jdbc:mariadb://<dbhost>:3306/mysql root <pass> org.mariadb.jdbc.Driver`
+    `0: jdbc:mariadb://mariadb:3306/mysql> !tables`
+    `0: jdbc:mariadb://mariadb:3306/mysql> select * from user;`
+    `0: jdbc:mariadb://mariadb:3306/mysql> !quit`
+
 ## Building or customizing the image
 
 First clone this repo. Here there's a Makefile with some variables you can export on your term before building the image.
