@@ -1,0 +1,43 @@
+version: "3.3"
+
+networks:
+  testnet:
+
+volumes:
+  mysqldata:
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - mysqldata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpass
+    ports:
+      - 3306
+    networks:
+      - testnet
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - 80
+    networks:
+      - testnet
+  docker-systools:
+    image: ponte124/docker-systools:latest
+    command: tail -f /dev/null
+    links:
+      - db
+      - phpmyadmin
+    networks:
+      - testnet
